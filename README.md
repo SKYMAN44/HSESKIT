@@ -1,3 +1,7 @@
 # HSESKIT
+### current version: v0.0.1
 
-A description of this package.
+Library containing UI components for UIKit applications
+
+## Contents:
+-SegmentedControl
