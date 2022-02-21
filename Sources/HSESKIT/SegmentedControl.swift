@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class SegmentedControl: UIControl {
+public class SegmentedControl: UIControl {
     private var buttons = [UIButton]()
     private var selector: UIView!
     private(set) var selectedSegmentIndex = 0
@@ -98,10 +98,6 @@ final class SegmentedControl: UIControl {
         stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         stackView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
         stackView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-    }
-
-    override func draw(_ rect: CGRect) {
-        
     }
     
     @objc
