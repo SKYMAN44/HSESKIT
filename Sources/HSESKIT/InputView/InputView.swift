@@ -108,9 +108,9 @@ public class InputView: UIView {
     }()
     
     
-    weak var delegate: InputViewDelegate?
-    var presentingController: UIViewController?
-    var chosenPhotos: [UIImage] = [] {
+    public weak var delegate: InputViewDelegate?
+    private var presentingController: UIViewController?
+    private var chosenPhotos: [UIImage] = [] {
         didSet {
             if(chosenPhotos.isEmpty) {
                 contentCollectionView.isHidden = true
