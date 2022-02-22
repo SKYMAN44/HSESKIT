@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol PaginationViewDelegate: AnyObject {
+public protocol PaginationViewDelegate: AnyObject {
     /// called by segmentView when chosen segment has changed
     func segmentChosen(index: Int)
 }
@@ -19,9 +19,9 @@ public class PaginationView: UIView {
     public weak var delegate: PaginationViewDelegate?
     
     /// current segment items
-    public private(set) var segmentItems: [Item] = []
+    public private(set) var segmentItems: [PageItem] = []
     
-    override var backgroundColor: UIColor? {
+    public override var backgroundColor: UIColor? {
         didSet {
             collectionView?.backgroundColor = backgroundColor
         }
@@ -70,12 +70,9 @@ public class PaginationView: UIView {
         collectionView?.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
     
-    override func draw(_ rect: CGRect) {
-    }
-    
     // MARK: - API
     /// set titles in segments
-    public func setTitles(titles: [Item]) {
+    public func setTitles(titles: [PageItem]) {
         segmentItems.removeAll()
         segmentItems = titles
         
@@ -95,7 +92,7 @@ public class PaginationView: UIView {
 
 // MARK: - CollectionView Delegate
 extension PaginationView: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         delegate?.segmentChosen(index: indexPath.row)
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
@@ -103,11 +100,11 @@ extension PaginationView: UICollectionViewDelegate {
 
 // MARK: - CollectionView DataSource
 extension PaginationView: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return segmentItems.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PageCollectionViewCell.reuseIdentifier, for: indexPath) as! PageCollectionViewCell
         cell.configure(item: segmentItems[indexPath.row])
         

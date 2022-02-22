@@ -105,7 +105,7 @@ final class PageCollectionViewCell: UICollectionViewCell {
     }
     
     
-    public func configure(item: Item) {
+    public func configure(item: PageItem) {
         titleLabel.text = item.title
         guard item.notifications != 0
         else {
