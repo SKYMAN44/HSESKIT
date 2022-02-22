@@ -9,8 +9,8 @@ import Foundation
 import UIKit
 
 // guard case if case
-extension UIColor {
-    public enum background {
+public extension UIColor {
+    enum background {
         case firstLevel
         case secondLevel
         case accent
@@ -29,7 +29,7 @@ extension UIColor {
         }
     }
     
-    public enum outline {
+    enum outline {
         case heavy
         case light
         
@@ -45,7 +45,7 @@ extension UIColor {
         }
     }
     
-    public enum primary {
+    enum primary {
         case onPrimary
         case primary
         case filler
@@ -64,7 +64,7 @@ extension UIColor {
         }
     }
     
-    public enum special {
+    enum special {
         case accept
         case aceptFiller
         case warning
@@ -86,7 +86,7 @@ extension UIColor {
         }
     }
     
-    public enum textAndIcons {
+    enum textAndIcons {
         case primary
         case secondary
         case tretiary

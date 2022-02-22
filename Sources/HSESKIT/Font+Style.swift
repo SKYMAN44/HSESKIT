@@ -8,9 +8,9 @@
 import Foundation
 import UIKit
 
-extension UIFont {
+public extension UIFont {
     
-    public enum customFont: String {
+    enum customFont: String {
         case headline
         case title
         case body
