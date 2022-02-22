@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol InputViewDelegate {
+public protocol InputViewDelegate {
     func inputViewHeightDidChange(heightConstrain: CGFloat)
     func messageSent(message: MessageContent)
 }

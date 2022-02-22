@@ -9,6 +9,6 @@ import Foundation
 import UIKit
 
 public struct MessageContent {
-    let text: String?
-    let image: UIImage?
+    public let text: String?
+    public let image: UIImage?
 }
