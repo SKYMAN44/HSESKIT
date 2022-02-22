@@ -20,7 +20,7 @@ public extension UIFont {
         case message
         case formula
         
-        func style() -> UIFont {
+        public func style() -> UIFont {
             let font: UIFont
             switch self {
             case .headline:

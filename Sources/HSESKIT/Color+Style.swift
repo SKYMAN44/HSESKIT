@@ -15,7 +15,7 @@ public extension UIColor {
         case secondLevel
         case accent
         
-        func style() -> UIColor {
+        public func style() -> UIColor {
             let color: UIColor
             switch self {
             case .accent:
@@ -33,7 +33,7 @@ public extension UIColor {
         case heavy
         case light
         
-        func style() -> UIColor {
+        public func style() -> UIColor {
             let color: UIColor
             switch self {
             case .heavy:
@@ -50,7 +50,7 @@ public extension UIColor {
         case primary
         case filler
         
-        func style() -> UIColor {
+        public func style() -> UIColor {
             let color: UIColor
             switch self {
             case .onPrimary:
@@ -70,7 +70,7 @@ public extension UIColor {
         case warning
         case warningFiller
         
-        func style() -> UIColor {
+        public func style() -> UIColor {
             let color: UIColor
             switch self {
             case .accept:
@@ -91,7 +91,7 @@ public extension UIColor {
         case secondary
         case tretiary
         
-        func style() -> UIColor {
+        public func style() -> UIColor {
             let color: UIColor
             switch self {
             case .primary:
