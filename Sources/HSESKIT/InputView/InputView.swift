@@ -310,7 +310,7 @@ extension InputView: InputContentCollectionViewCellDelegate {
     }
 }
 
-// MARK: - TextViewDelegate
+// MARK: - TextView Delegate
 extension InputView: UITextViewDelegate {
     public func textViewDidBeginEditing(_ textView: UITextView) {
         if(textView.textColor == .textAndIcons.style(.tretiary)()) {
