@@ -10,7 +10,7 @@ import UIKit
 
 extension UIFont {
     
-    enum customFont: String {
+    public enum customFont: String {
         case headline
         case title
         case body
