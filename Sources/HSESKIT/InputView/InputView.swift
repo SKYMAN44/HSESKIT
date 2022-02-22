@@ -7,7 +7,7 @@
 
 import UIKit
 
-public protocol InputViewDelegate {
+public protocol InputViewDelegate: AnyObject {
     func inputViewHeightDidChange(heightConstrain: CGFloat)
     func messageSent(message: MessageContent)
 }
@@ -108,7 +108,7 @@ public class InputView: UIView {
     }()
     
     
-    var delegate: InputViewDelegate?
+    weak var delegate: InputViewDelegate?
     var presentingController: UIViewController?
     var chosenPhotos: [UIImage] = [] {
         didSet {
