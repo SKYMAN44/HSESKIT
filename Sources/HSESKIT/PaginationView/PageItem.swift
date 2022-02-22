@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PageItem {
+public struct PageItem {
     var title: String
     var notifications: Int
 //    var action: ((String) -> ())?
