@@ -3,6 +3,6 @@
 Library containing UI components for UIKit applications
 
 ## Contents:
--SegmentedControl
--PaginationView
--InputView
+- SegmentedControl
+- PaginationView
+- InputView
