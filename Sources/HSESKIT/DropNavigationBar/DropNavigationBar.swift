@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class DropNavigationBar: UIControl {
+public class DropNavigationBar: UIControl {
     
     private let rightButton: UIButton = {
         let button = UIButton(type: .system)
@@ -131,7 +131,7 @@ final class DropNavigationBar: UIControl {
     
     // MARK: - getters
     /// returns currently chosen segment (0 or 1)
-    private(set) var choosenSegment = 0
+    public private(set) var choosenSegment = 0
     
     // MARK: - Init
     override init(frame: CGRect) {
