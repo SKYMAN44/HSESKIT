@@ -6,3 +6,4 @@ Library containing UI components for UIKit applications
 - SegmentedControl
 - PaginationView
 - InputView
+- DropNavigationBar

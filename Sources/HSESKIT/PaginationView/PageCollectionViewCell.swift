@@ -50,7 +50,7 @@ final class PageCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -62,6 +62,7 @@ final class PageCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - UI setup
     private func setupView() {
         self.backgroundColor = .background.style(.secondLevel)()
         self.layer.cornerRadius = 8
@@ -104,7 +105,7 @@ final class PageCollectionViewCell: UICollectionViewCell {
         NSLayoutConstraint.activate(stackViewConstrains)
     }
     
-    
+    // MARK: - External call
     public func configure(item: PageItem) {
         titleLabel.text = item.title
         guard item.notifications != 0
