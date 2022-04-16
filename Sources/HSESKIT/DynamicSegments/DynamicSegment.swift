@@ -69,7 +69,7 @@ public class DynamicSegments: UIView {
             mainView.topAnchor.constraint(equalTo: topAnchor),
             mainView.leftAnchor.constraint(equalTo: leftAnchor),
             mainView.rightAnchor.constraint(equalTo: rightAnchor),
-            mainView.setHeight(to: 60) // temp
+            mainView.heightAnchor.constraint(equalToConstant: 60)
         ])
         
         mainView.addSubview(firstCollectionView)
