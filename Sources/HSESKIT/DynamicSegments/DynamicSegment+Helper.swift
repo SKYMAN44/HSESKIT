@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Helper Types
-extension DynamicSegments {
+public extension DynamicSegments {
     public struct Configuration {
         private var currentChoice: [Node<Item>] = []
         private var options: Node<Item>
