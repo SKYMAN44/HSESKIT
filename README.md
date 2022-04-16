@@ -7,5 +7,6 @@ Library containing UI components for UIKit applications
 - PaginationView
 - InputView
 - DropNavigationBar
+- DynamicSegments
 
 ## Demo: 
