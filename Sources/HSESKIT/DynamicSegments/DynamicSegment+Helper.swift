@@ -102,6 +102,10 @@ public extension DynamicSegments {
             let presentingName: String
             let id = UUID()
             
+            public init(presentingName: String) {
+                self.presentingName = presentingName
+            }
+            
             public static func == (lhs: Item, rhs: Item) -> Bool {
                 return lhs.id == rhs.id
             }
