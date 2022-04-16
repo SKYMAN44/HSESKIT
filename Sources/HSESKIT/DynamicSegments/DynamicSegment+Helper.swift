@@ -115,22 +115,22 @@ extension DynamicSegments {
         var childrenCategory: Value
         var children: [Node]
         
-        init(_ value: Value, childrenCategory: Value) {
+        public init(_ value: Value, childrenCategory: Value) {
             self.value = value
             self.childrenCategory = childrenCategory
             self.children = []
         }
 
-        init(_ value: Value, childrenCategory: Value, children: [Node]) {
+        public init(_ value: Value, childrenCategory: Value, children: [Node]) {
             self.init(value, childrenCategory: childrenCategory)
             self.children = children
         }
         
-        mutating func add(child: Node) {
+        public mutating func add(child: Node) {
             children.append(child)
         }
         
-        mutating func add(child: [Node]) {
+        public mutating func add(child: [Node]) {
             children.append(contentsOf: child)
         }
         
