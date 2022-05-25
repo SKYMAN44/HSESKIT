@@ -11,7 +11,7 @@ import UIKit
 public class SegmentedControl: UIControl {
     private var buttons = [UIButton]()
     private var selector: UIView!
-    private(set) var selectedSegmentIndex = 0
+    public private(set) var selectedSegmentIndex = 0
     
     public var borderWidth: CGFloat = 0{
         didSet {
