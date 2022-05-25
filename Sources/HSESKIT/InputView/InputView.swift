@@ -26,7 +26,7 @@ public class InputView: UIView {
                                                   attribute: .width,
                                                   multiplier: 1,
                                                   constant: 0))
-        button.widthAnchor.constraint(equalToConstant: 36).isActive = true
+        button.widthAnchor.constraint(equalToConstant: 24).isActive = true
         button.addTarget(self, action: #selector(sendButtonTapped), for: .touchUpInside)
         button.isEnabled = false
         
@@ -48,7 +48,7 @@ public class InputView: UIView {
                                                   attribute: .width,
                                                   multiplier: 1,
                                                   constant: 0))
-        button.widthAnchor.constraint(equalToConstant: 36).isActive = true
+        button.widthAnchor.constraint(equalToConstant: 20).isActive = true
         button.addTarget(self, action: #selector(chooseImageTapped(sender:)), for: .touchUpInside)
         
         return button
@@ -129,7 +129,6 @@ public class InputView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        
         inputTextView.delegate = self
         contentCollectionView.delegate = self
         contentCollectionView.dataSource = self
@@ -142,7 +141,6 @@ public class InputView: UIView {
     
     public override func layoutSubviews() {
         super.layoutSubviews()
-        
         
         presentingController = findViewController()
         sendButton.layer.cornerRadius = sendButton.frame.width / 2
@@ -275,7 +273,6 @@ public class InputView: UIView {
         }
     }
 
-    
     // MARK: - API
     public func dismissView() {
         inputTextView.resignFirstResponder()
@@ -300,7 +297,6 @@ extension InputView: UICollectionViewDataSource {
         
         return cell
     }
-    
 }
 
 // MARK: - CollectionViewCell Delegate
@@ -349,9 +345,10 @@ extension InputView: UITextViewDelegate {
 
 // MARK: - ImagePickerDelegate
 extension InputView: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
-    
-    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any])
-    {
+    public func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
+    ) {
         guard let selectedImage = info[.originalImage] as? UIImage,
               let controller = presentingController
         else { return }
