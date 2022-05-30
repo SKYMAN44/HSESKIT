@@ -16,6 +16,7 @@ public class InputView: UIView {
     private var sendButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "upwardArrow"), for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
         button.tintColor = .background.style(.firstLevel)()
         button.backgroundColor = .primary.style(.primary)()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -26,7 +27,14 @@ public class InputView: UIView {
                                                   attribute: .width,
                                                   multiplier: 1,
                                                   constant: 0))
-        button.widthAnchor.constraint(equalToConstant: 24).isActive = true
+        button.widthAnchor.constraint(equalToConstant: 36).isActive = true
+        if #available(iOS 15.0, *) {
+//            button.configuration = .plain()
+//            button.configuration?.image = UIImage(named: "upwardArrow")
+//            button.configuration?.imagePadding = 6
+        } else {
+            button.imageEdgeInsets = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6)
+        }
         button.addTarget(self, action: #selector(sendButtonTapped), for: .touchUpInside)
         button.isEnabled = false
         
@@ -48,7 +56,7 @@ public class InputView: UIView {
                                                   attribute: .width,
                                                   multiplier: 1,
                                                   constant: 0))
-        button.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        button.widthAnchor.constraint(equalToConstant: 36).isActive = true
         button.addTarget(self, action: #selector(chooseImageTapped(sender:)), for: .touchUpInside)
         
         return button
