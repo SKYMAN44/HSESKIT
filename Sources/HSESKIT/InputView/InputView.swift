@@ -28,13 +28,6 @@ public class InputView: UIView {
                                                   multiplier: 1,
                                                   constant: 0))
         button.widthAnchor.constraint(equalToConstant: 36).isActive = true
-        if #available(iOS 15.0, *) {
-//            button.configuration = .plain()
-//            button.configuration?.image = UIImage(named: "upwardArrow")
-//            button.configuration?.imagePadding = 6
-        } else {
-            button.imageEdgeInsets = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6)
-        }
         button.addTarget(self, action: #selector(sendButtonTapped), for: .touchUpInside)
         button.isEnabled = false
         
@@ -44,8 +37,8 @@ public class InputView: UIView {
     private var chooseImageButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "plus-circle"), for: .normal)
-        button.contentVerticalAlignment = .fill
-        button.contentHorizontalAlignment = .fill
+        button.contentVerticalAlignment = .center
+        button.contentHorizontalAlignment = .center
         button.tintColor = .primary.style(.primary)()
         button.backgroundColor = .clear
         button.translatesAutoresizingMaskIntoConstraints = false
