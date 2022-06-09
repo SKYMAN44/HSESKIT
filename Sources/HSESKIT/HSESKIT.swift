@@ -28,7 +28,6 @@ public struct HSESKIT {
                 fatalError("Couldn't create font from filename: \(fontName) with extension \(fontExtension)")
         }
         var error: Unmanaged<CFError>?
-
         CTFontManagerRegisterGraphicsFont(font, &error)
     }
     
