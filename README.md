@@ -6,6 +6,7 @@ Library containing UI components for UIKit applications
 - more components
 - fix bug with assets not being part of a bundle
 - complete change of colors access
+- unit tests
 
 ## Contents:
 - SegmentedControl
@@ -15,3 +16,4 @@ Library containing UI components for UIKit applications
 - DynamicSegments
 
 ## Demo: 
+
