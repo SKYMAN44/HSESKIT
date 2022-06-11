@@ -234,6 +234,7 @@ public class InputView: UIView {
         chosenPhotos.removeAll()
     }
     
+    // TODO: - Switch to PHPhoto Library
     @objc
     private func chooseImageTapped(sender: UIButton) {
         guard let controller = presentingController else { return }
