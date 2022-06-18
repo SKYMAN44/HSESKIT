@@ -10,9 +10,16 @@ import UIKit
 public protocol PaginationViewDelegate: AnyObject {
     /// called by segmentView when chosen segment has changed
     func segmentChosen(index: Int)
+    func addItemChosen()
 }
 
 public class PaginationView: UIView {
+    public enum Mode {
+        case read
+        case edit
+    }
+
+    private var mode: Mode
     private var collectionView: UICollectionView?
     
     /// segmentView delegate
@@ -28,20 +35,22 @@ public class PaginationView: UIView {
     }
     
     // MARK: - Initialization
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
-        
+    public init(_ mode: Mode) {
+        self.mode = mode
+        super.init(frame: .zero)
         
         setupCollectionView()
     }
     
     required init?(coder: NSCoder) {
+        self.mode = .read
         super.init(coder: coder)
         
         
         setupCollectionView()
     }
-    
+
+    // MARK: - UI setup
     private func setupCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -52,7 +61,14 @@ public class PaginationView: UIView {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView?.backgroundColor = self.backgroundColor
         
-        collectionView?.register(PageCollectionViewCell.self, forCellWithReuseIdentifier: PageCollectionViewCell.reuseIdentifier)
+        collectionView?.register(
+            PageCollectionViewCell.self,
+            forCellWithReuseIdentifier: PageCollectionViewCell.reuseIdentifier
+        )
+        collectionView?.register(
+            PageAddCollectionViewCell.self,
+            forCellWithReuseIdentifier: PageAddCollectionViewCell.reuseIdentifier
+        )
         
         collectionView?.delegate = self
         collectionView?.dataSource = self
@@ -93,6 +109,11 @@ public class PaginationView: UIView {
 // MARK: - CollectionView Delegate
 extension PaginationView: UICollectionViewDelegate {
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView.cellForItem(at: indexPath) is PageAddCollectionViewCell {
+            delegate?.addItemChosen()
+
+            return 
+        }
         delegate?.segmentChosen(index: indexPath.row)
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
@@ -101,11 +122,22 @@ extension PaginationView: UICollectionViewDelegate {
 // MARK: - CollectionView DataSource
 extension PaginationView: UICollectionViewDataSource {
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return segmentItems.count
+        return  mode == .edit ? segmentItems.count + 1 : segmentItems.count
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PageCollectionViewCell.reuseIdentifier, for: indexPath) as! PageCollectionViewCell
+        if(indexPath.row == segmentItems.count) {
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: PageAddCollectionViewCell.reuseIdentifier,
+                for: indexPath
+            )
+            return cell
+        }
+
+        let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: PageCollectionViewCell.reuseIdentifier,
+            for: indexPath
+        ) as! PageCollectionViewCell
         cell.configure(item: segmentItems[indexPath.row])
         
         return cell
