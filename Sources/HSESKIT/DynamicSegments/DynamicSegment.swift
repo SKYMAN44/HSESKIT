@@ -17,7 +17,7 @@ public class DynamicSegments: UIView {
     typealias DataSourceCollection = UICollectionViewDiffableDataSource<AnyHashable,Configuration.Item>
     typealias collectionSnapshot = NSDiffableDataSourceSnapshot<AnyHashable, Configuration.Item>
     
-    private var delegate: DynamicSegmentsDelegate?
+    public var delegate: DynamicSegmentsDelegate?
     private var configuration: Configuration
     
     private lazy var firstCollectionView: UICollectionView = generateCollectionView()
@@ -51,6 +51,18 @@ public class DynamicSegments: UIView {
         secondCollectionView.accessibilityIdentifier = "second"
         setupView()
         updateDataSource()
+    }
+
+    public init() {
+        let node = Node(Configuration.Item(presentingName: "_"), childrenCategory: Configuration.Item(presentingName: "_"))
+        self.configuration = Configuration(node)
+        super.init(frame: .zero)
+
+        firstCollectionView.delegate = self
+        firstCollectionView.accessibilityIdentifier = "first"
+        secondCollectionView.delegate = self
+        secondCollectionView.accessibilityIdentifier = "second"
+        setupView()
     }
     
     required init?(coder: NSCoder) {
@@ -152,7 +164,13 @@ public class DynamicSegments: UIView {
             }
         }
     }
-    
+
+    public func updateConfiguration(options: Node<Configuration.Item>) {
+        self.configuration = Configuration(options)
+        updateDataSource()
+    }
+
+    // MARK: - HideAnimation
     private func hideAnimation(completion: @escaping () -> ()) {
         UIView.animate(withDuration: 0.3, animations: {
             self.slidingView.frame.origin.y = 0

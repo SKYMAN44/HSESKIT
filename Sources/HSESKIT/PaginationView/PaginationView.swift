@@ -94,14 +94,18 @@ public class PaginationView: UIView {
         
         DispatchQueue.main.async {
             self.collectionView?.reloadData()
-            self.collectionView?.selectItem(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .centeredHorizontally)
+            if let item = self.collectionView?.cellForItem(at: IndexPath(row: 0, section: 0)) {
+                self.collectionView?.selectItem(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .centeredHorizontally)
+            }
         }
     }
     
     /// scroll to specified segment
     public func moveTo(_ index: Int) {
         let indexPath = IndexPath(row: index, section: 0)
-        collectionView?.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+        if let item = collectionView?.cellForItem(at: indexPath) {
+            collectionView?.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+        }
     }
     
 }
@@ -109,13 +113,16 @@ public class PaginationView: UIView {
 // MARK: - CollectionView Delegate
 extension PaginationView: UICollectionViewDelegate {
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView.cellForItem(at: indexPath) is PageAddCollectionViewCell {
-            delegate?.addItemChosen()
-
-            return 
-        }
         delegate?.segmentChosen(index: indexPath.row)
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+    }
+
+    public func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        if collectionView.cellForItem(at: indexPath) is PageAddCollectionViewCell {
+            delegate?.addItemChosen()
+            return false
+        }
+        return true
     }
 }
 

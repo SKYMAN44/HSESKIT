@@ -99,7 +99,7 @@ public extension DynamicSegments {
         
         public struct Item: Equatable, Hashable {
             var isChoosen: Bool = false
-            let presentingName: String
+            public let presentingName: String
             let id = UUID()
             
             public init(presentingName: String) {
